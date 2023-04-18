@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FactureController;
 use App\Http\Controllers\API\FournisseurController;
+use App\Http\Controllers\API\CategorieController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,3 +19,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::apiResource('/api/fournisseur',FournisseurController::class);
+Route::apiResource('/api/categorie',CategorieController::class);
