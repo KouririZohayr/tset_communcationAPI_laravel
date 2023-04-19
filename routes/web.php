@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\FactureController;
+use App\Http\Controllers\API\FactureController;
 use App\Http\Controllers\API\FournisseurController;
 use App\Http\Controllers\API\CategorieController;
+use App\Http\Controllers\API\Facture;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,5 +19,9 @@ use App\Http\Controllers\API\CategorieController;
 Route::get('/', function () {
     return view('welcome');
 });
+/* categoryFournisseur */
 Route::apiResource('/api/fournisseur',FournisseurController::class);
 Route::apiResource('/api/categorie',CategorieController::class);
+Route::apiResource('/api/Facture',FactureController::class);
+
+

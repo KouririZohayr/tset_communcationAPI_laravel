@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Facture extends Model
 {
     use HasFactory;
+    protected $fillable=['numero_fact','id_fournisseur','date_fact'];
     public function fournisseurs(){
         return $this->belongsTo(Fournisseur::class, 'id_fournisseur');
     }

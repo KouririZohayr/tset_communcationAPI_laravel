@@ -4,8 +4,10 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Fournisseur;
+use App\Models\Facture;
 use Illuminate\Http\Request;
-
+use App\Models\Detailfacture;
+use App\Models\Categorie;
 class FournisseurController extends Controller
 {
     /**
@@ -22,7 +24,7 @@ class FournisseurController extends Controller
      */
     public function store(Request $request)
     {
-        $Newfournisseur=new Fournisseur([
+        $newfournisseur=new Fournisseur([
             'ICE' =>$request->ICE,
             'nom' =>$request->nom,
             'adreasse' =>$request->adreasse,
@@ -30,8 +32,8 @@ class FournisseurController extends Controller
             'fix' =>$request->fix,
             'email' =>$request->email
             ]);
-            $Newfournisseur->save();
-            return response()->json($Newfournisseur,201);
+            $newfournisseur->save();
+            return response()->json($newfournisseur,201);
     }
 
     /**
@@ -39,7 +41,10 @@ class FournisseurController extends Controller
      */
     public function show(Fournisseur $fournisseur)
     {
-        return response()->json($fournisseur);
+    
+        
+       return  response()->json($fournisseur);
+
     }
 
     /**
@@ -64,4 +69,19 @@ class FournisseurController extends Controller
     {
         //
     }
+    public function categoryFournisseur(Fournisseur $fournisseur , $id )
+    {
+        $result=[];
+        $fournisseur = Fournisseur::find($id);
+        $fournisseur=$fournisseur->facturs;
+        foreach($fournisseur as $factures ){
+            $produits=$factures->Detailfactures;
+            foreach($produits as $roduit){
+                $categorie=Categorie::find($roduit->id_SC);
+                $result["categorie"]=$categorie ;
+            }
+        }
+       return  response()->json($result);
+    }
+
 }

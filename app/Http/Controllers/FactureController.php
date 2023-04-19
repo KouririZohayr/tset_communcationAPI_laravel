@@ -12,11 +12,7 @@ class FactureController extends Controller
      */
     public function index()
     {
-        $factures=Facture::find(1);
-        return $factures->fournisseurs ;
-        
-        
-
+      
     }
 
     /**
